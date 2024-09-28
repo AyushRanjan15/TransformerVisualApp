@@ -1,0 +1,10 @@
+# Use an nginx base image to serve the static files
+FROM nginx:alpine
+
+# Copy the frontend files into the nginx web directory
+COPY . /usr/share/nginx/html
+
+# Expose port 80 to be accessible outside of the container
+EXPOSE 80
+
+# No need to specify a command as nginx will start by default
