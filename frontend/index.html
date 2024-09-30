@@ -5,66 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload to S3</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* Added to stack elements vertically */
-        }
-        .upload-container {
-            background-color: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px; /* Added space between container and preview */
-        }
-        .upload-container h2 {
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .upload-container input[type="file"] {
-            display: block;
-            margin-bottom: 10px;
-        }
-        .upload-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .upload-container button:hover {
-            background-color: #45a049;
-        }
-        .file-name {
-            margin-top: 10px;
-            text-align: center;
-            font-style: italic;
-            color: #555;
-        }
-        .image-preview {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .image-preview img {
-            max-width: 500px;
-            max-height: 400px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <!-- Link the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- New header section -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Vision Transformers (ViT) in Image Recognition - stealing the throne from CNN</h1>
+        </div>
+        
+        <div class="header-video">
+            <video width="800" height="450" autoplay loop muted controls>
+                <source src="video/video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        </div>
+    </header>
+
     <div class="upload-container">
-        <h2>Upload Image</h2>
+        <h2>Try out one of your own images</h2>
         <form id="upload-form">
             <input type="file" id="file-input" name="image" accept="image/*" required>
             <button type="submit">Submit</button>
@@ -73,6 +34,13 @@
     </div>
     <div class="image-preview" id="image-preview">
         <!-- Image preview will be shown here after upload -->
+    </div>
+
+    <!-- Add additional text content -->
+    <div class="text-content">
+        <p>Vision Transformers (ViT) has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art (SOTA) in different image recognition computer vision tasks. ViT models outperform the current SOTA CNNs by almost x4 in terms of computational efficiency and accuracy.</p>
+        <p>Transformer models have become the de facto status quo in Natural Language Processing (NLP). For example, the popular ChatGPT AI chatbot is a transformer-based language model. Specifically, it is based on the GPT (Generative Pre-trained Transformer) architecture. This uses self-attention mechanisms to model the dependencies between words in a text.</p>
+        <p>In computer vision research, there has recently been a rise in interest in Vision Transformer (ViTs) and Multilayer Perceptrons (MLPs).</p>
     </div>
 
     <!-- Include the script before the closing body tag (recommended) -->

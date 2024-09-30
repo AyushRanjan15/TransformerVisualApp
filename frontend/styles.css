@@ -1,0 +1,113 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header styling */
+.header {
+    width: 100%;
+    background-color: #007FFF; /* Light blue strip */
+    padding: 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Center content horizontally */
+}
+
+.header-content h1 {
+    font-size: 40px;
+    color: #FFFFFF;
+    margin: 0;
+    flex: 1; /* Ensures the heading takes up space on the left */
+    text-align: left; /* Left-aligned text */
+}
+
+.header-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 0 0 320px; /* Fix the width of the video section */
+    margin-left: 20px; /* Adds some spacing between heading and video */
+}
+
+.header-video video {
+    border-radius: 12px;
+}
+
+/* Upload section styling */
+.upload-container {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.upload-container h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.upload-container input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.upload-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-container button:hover {
+    background-color: #45a049;
+}
+
+.file-name {
+    margin-top: 10px;
+    text-align: center;
+    font-style: italic;
+    color: #555;
+}
+
+.image-preview {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-preview img {
+    max-width: 500px;
+    max-height: 400px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text content section */
+.text-content {
+    max-width: 600px;
+    text-align: justify;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
