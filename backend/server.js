@@ -7,6 +7,14 @@ const app = express()
 // Enable CORS for all routes
 app.use(cors());
 
+// Enable CORS for a specific origin (frontend URL on EC2)
+app.use(cors({
+    origin: 'http://13.211.125.31:8000', // Replace with your frontend IP address
+    optionsSuccessStatus: 200
+}));
+
+
+
 app.use(express.static('front'))
 
 // TODO: authentiate user before providing url

@@ -29,7 +29,8 @@ uploadForm.addEventListener('submit', async event => {
     try {
         // Step 1: Get a secure URL from your server to upload the file to S3
         console.log("Fetching secure URL from server...");
-        const response = await fetch("http://localhost:8080/s3Url"); 
+        // const response = await fetch("http://localhost:8080/s3Url"); 
+        const response = await fetch("http://13.211.125.31:8080/s3Url");
         console.log("Server response received:", response);
         if (!response.ok) {
             throw new Error(`Server error: ${response.status} ${response.statusText}`);
