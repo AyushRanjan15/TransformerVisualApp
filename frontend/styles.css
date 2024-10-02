@@ -61,11 +61,14 @@ body {
 .upload-container {
     background-color: #fff;
     padding: 20px 30px;
+    align-items: center;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
+    margin: 20px auto;
     width: 100%;
     max-width: 600px;
+    display: flex; /* Ensure flexbox for aligning internal elements */
+    flex-direction: column; /* Ensure children stack vertically */
 }
 
 .upload-container h2 {
