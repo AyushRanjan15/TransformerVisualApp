@@ -1,11 +1,20 @@
 /* Global styles */
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+} */
+
+body {
+    font-family: 'Georgia', serif; /* Medium-like font */
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header styling */
@@ -105,15 +114,6 @@ body {
 }
 
 /* Text content section */
-
-body {
-    font-family: 'Georgia', serif; /* Medium-like font */
-    background-color: #f4f4f4; /* Light grey background */
-    color: #333;
-    line-height: 1.8;
-    margin: 0;
-    padding: 0;
-}
 
 .article-container {
     max-width: 800px;
