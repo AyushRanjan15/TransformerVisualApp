@@ -37,10 +37,27 @@
     </div>
 
     <!-- Add additional text content -->
-    <div class="text-content">
-        <p>Vision Transformers (ViT) has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art (SOTA) in different image recognition computer vision tasks. ViT models outperform the current SOTA CNNs by almost x4 in terms of computational efficiency and accuracy.</p>
-        <p>Transformer models have become the de facto status quo in Natural Language Processing (NLP). For example, the popular ChatGPT AI chatbot is a transformer-based language model. Specifically, it is based on the GPT (Generative Pre-trained Transformer) architecture. This uses self-attention mechanisms to model the dependencies between words in a text.</p>
-        <p>In computer vision research, there has recently been a rise in interest in Vision Transformer (ViTs) and Multilayer Perceptrons (MLPs).</p>
+    <div class="article-container">
+        <div class="text-content">
+            <p>Transformers were originally introduced to take on challenges faced in tasks like language modelling and machine translation. 
+                Before the introduction of Transformers the then SOTA methods, such as long short-term memory (LSTM), recurrent neural network (RNN) were ignorantly sequential in nature which posed challenges in handling long sequences due to memory constrains of hardware. 
+                The Transformers were introduced as an approach that only uses self-attention, the absence of recurrence allowed for significant improvements in parallelisation. 
+                For example, in natural language processing tasks, architectures like GPT-4 can handle entire paragraphs or documents with thousands of tokens, maintaining context and coherence across long sequences, which was previously a significant limitation in earlier models like RNNs or LSTMs.</p>
+        </div>
+
+        <!-- Add an image (centered and styled like Medium) -->
+        <div class="image-container">
+            <img src="images/transformer_architecture.png" alt="Transformers illustration">
+            <figcaption>A diagram of Transformer architecture (taken from 'Attention Is All You Need').</figcaption>
+        </div>
+
+        <div class="text-content">
+            <p>The success of transformers in natural language tasks inspired researchers at Google Brain research team to apply them to computer vision tasks, such as image classification. 
+                At that time, convolutional neural networks (CNN) was the dominant approach to tackle computer vision tasks. 
+                Vision transformers see very differently from CNNs. CNN stats with very low-level local information and gradually build up more global structures in deeper layers, ViT already have global information at the earliest layer because of global self-attention. 
+                As pithily summarized in a Quanta article, “If a CNN’s approach is like starting at a single pixel and zooming out, a transformer slowly brings the whole fuzzy image into focus.”. 
+                </p>
+        </div>
     </div>
 
     <!-- Include the script before the closing body tag (recommended) -->

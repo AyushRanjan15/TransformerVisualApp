@@ -12,24 +12,26 @@ body {
 .header {
     width: 100%;
     background-color: #007FFF; /* Light blue strip */
-    padding: 20px;
+    padding: 20px 0; /* Added vertical padding for spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
-    text-align: justify;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1200px; /* Restricting width to ensure content doesn't stretch */
     margin: 0 auto; /* Center content horizontally */
+    padding: 0 20px; /* Adding some padding for breathing room */
 }
 
 .header-content h1 {
-    font-size: 40px;
+    font-size: 36px; /* Reduced font size slightly for better balance */
     color: #FFFFFF;
     margin: 0;
-    flex: 1; /* Ensures the heading takes up space on the left */
-    text-align: left; /* Left-aligned text */
+    flex: 2; /* Allows more room for the heading */
+    text-align: left; /* Keep the heading left-aligned */
+    font-weight: bold; /* Enhance the weight of the text */
 }
 
 .header-video {
@@ -103,11 +105,44 @@ body {
 }
 
 /* Text content section */
-.text-content {
-    max-width: 600px;
+
+.article-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.text-content p {
+    font-size: 18px;
     text-align: justify;
-    background-color: #ffffff;
-    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.image-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-container figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+    text-align: center;
 }
