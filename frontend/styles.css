@@ -106,6 +106,15 @@ body {
 
 /* Text content section */
 
+body {
+    font-family: 'Georgia', serif; /* Medium-like font */
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+}
+
 .article-container {
     max-width: 800px;
     margin: 50px auto;
