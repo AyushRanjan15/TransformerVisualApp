@@ -6,10 +6,6 @@ import { promisify } from "util"
 const randomBytes = promisify(crypto.randomBytes)
 dotenv.config();
 
-console.log('AWS Access Key ID:', process.env.ACCESSKEYID);
-console.log('AWS Secret Access Key:', process.env.SECRETACCESSKEY);
-
-// TODO: Move this to a .env file
 const region = "ap-southeast-2"
 const bucketName = "image-inference-direct-upload"
 
