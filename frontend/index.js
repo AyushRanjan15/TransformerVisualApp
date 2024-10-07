@@ -29,8 +29,8 @@ uploadForm.addEventListener('submit', async event => {
     try {
         // Step 1: Get a secure URL from your server to upload the file to S3
         console.log("Fetching secure URL from server...");
-        // const response = await fetch("http://localhost:8080/s3Url"); 
-        const response = await fetch("http://13.211.125.31:8080/s3Url");
+        const response = await fetch("http://localhost:8080/s3Url"); 
+        // const response = await fetch("http://13.211.125.31:8080/s3Url");
         console.log("Server response received:", response);
         if (!response.ok) {
             throw new Error(`Server error: ${response.status} ${response.statusText}`);
@@ -60,30 +60,30 @@ uploadForm.addEventListener('submit', async event => {
         displayUploadedImage(imageUrl);
 
         // Step 4: Send a POST request to the backend server for further processing
-        console.log("Sending image URL to backend server for processing...");
-        const backendResponse = await fetch("http://172.31.34.34:5000/process-image", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                file_path: imageUrl // Pass the uploaded image URL to the backend
-            })
-        });
-        if (!backendResponse.ok) {
-            throw new Error(`Backend error: ${backendResponse.status} ${backendResponse.statusText}`);
-        }
+        // console.log("Sending image URL to backend server for processing...");
+        // const backendResponse = await fetch("http://172.31.34.34:5000/process-image", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         file_path: imageUrl // Pass the uploaded image URL to the backend
+        //     })
+        // });
+        // if (!backendResponse.ok) {
+        //     throw new Error(`Backend error: ${backendResponse.status} ${backendResponse.statusText}`);
+        // }
 
-        const backendData = await backendResponse.json();
-        console.log("Backend server response:", backendData);
-        if (backendData.processed_images) {
-            alert('Image processed successfully on the backend.');
-            // You can update the frontend to show the processed images if needed
-        }
+        // const backendData = await backendResponse.json();
+        // console.log("Backend server response:", backendData);
+        // if (backendData.processed_images) {
+        //     alert('Image processed successfully on the backend.');
+        //     // You can update the frontend to show the processed images if needed
+        // }
 
     } catch (error) {
         console.error("Error uploading file or sending it to the backend:", error);
-        alert('Error during file processing. Please try again.');
+        // alert('Error during file processing. Please try again.');
     }
 
     // Reset the form
