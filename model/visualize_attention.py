@@ -11,6 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# the image is downloaded to - Downloading: "https://dl.fbaipublicfiles.com/dino/dino_deitsmall8_300ep_pretrain/dino_deitsmall8_300ep_pretrain.pth" to /home/ubuntu/.cache/torch/hub/checkpoints/dino_deitsmall8_300ep_pretrain.pth  
+
 import os
 import sys
 import argparse
