@@ -60,26 +60,28 @@ uploadForm.addEventListener('submit', async event => {
         displayUploadedImage(imageUrl);
 
         // Step 4: Send a POST request to the backend server for further processing
-        // console.log("Sending image URL to backend server for processing...");
-        // const backendResponse = await fetch("http://172.31.34.34:5000/process-image", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         file_path: imageUrl // Pass the uploaded image URL to the backend
-        //     })
-        // });
-        // if (!backendResponse.ok) {
-        //     throw new Error(`Backend error: ${backendResponse.status} ${backendResponse.statusText}`);
-        // }
+        console.log("Sending image URL to backend server for processing...");
 
-        // const backendData = await backendResponse.json();
-        // console.log("Backend server response:", backendData);
-        // if (backendData.processed_images) {
-        //     alert('Image processed successfully on the backend.');
-        //     // You can update the frontend to show the processed images if needed
-        // }
+        // Create FormData and append the file
+        const imgData = new FormData();
+        imgData.append("file", file);  // Attach the file with the same 'file' field name
+
+        const backendResponse = await fetch("http://54.253.20.84:8080/upload-image", {
+            method: "POST",
+            body: imgData,    // Send the file directly
+        });
+        if (!backendResponse.ok) {
+            throw new Error(`Backend error: ${backendResponse.status} ${backendResponse.statusText}`);
+        }
+
+        const backendData = await backendResponse.json();
+        console.log("Backend server response:", backendData);
+        alert(`Image uploaded successfully: ${backendData.fileName}`);
+
+        if (backendData.processed_images) {
+            alert('Image processed successfully on the backend.');
+            // You can update the frontend to show the processed images if needed
+        }
 
     } catch (error) {
         console.error("Error uploading file or sending it to the backend:", error);

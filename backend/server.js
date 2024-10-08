@@ -1,11 +1,8 @@
-import express from 'express'
+import express from 'express';
 import { generateUploadURL } from './s3.js'
 import cors from 'cors'; // Import the CORS middleware
 
 const app = express()
-
-// Enable CORS for all routes
-// app.use(cors());
 
 // Enable CORS for a specific origin (frontend URL on EC2)
 app.use(cors({
@@ -13,8 +10,6 @@ app.use(cors({
     origin: 'http://localhost:8000', // Allow only requests from this origin
     optionsSuccessStatus: 200
 }));
-
-
 
 app.use(express.static('front'))
 
