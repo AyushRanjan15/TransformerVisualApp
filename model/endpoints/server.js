@@ -3,6 +3,10 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors'); // Import the CORS middleware
 
+// to send to Flask
+const axios = require('axios'); // For making HTTP requests
+const FormData = require('form-data'); // To send multipart data
+
 const app = express();
 
 // Enable CORS for all routes
@@ -16,7 +20,7 @@ const upload = multer({ storage: storage }); // Configure multer
 app.use(express.static('public'));
 
 // Handle the image upload
-app.post('/upload-image', upload.single('file'), (req, res) => {
+app.post('/upload-image', upload.single('file'), async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Received file:', req.file);
     if (!req.file) {
@@ -25,8 +29,23 @@ app.post('/upload-image', upload.single('file'), (req, res) => {
     }
 
     console.log('Received file:', req.file.originalname);
-    // Here, you can process the file or save it to S3, for example
-    res.send({ fileName: req.file.originalname });
+
+    // Forward the image to the Flask app for processing
+    const formData = new FormData();
+    formData.append('file', req.file.buffer, req.file.originalname); // Send the file buffer
+
+    try {const flaskResponse = await axios.post('http://172.31.43.78:5000/process-image', formData, {
+        headers: formData.getHeaders(),
+        responseType: 'stream', // Expect a stream (image) in resonse
+    });
+
+    // Forwardthe Flask image back to the client
+    res.setHeader('Content-Type', 'image/png');
+    flaskResponse.data.pipe(res); //Pipe the image back to the client
+    } catch (error) {
+        console.log('Error processing image: ', error);
+        res.status(500).send({ error: 'Failed to process image' });
+    }
 });
 
 // Start the server on port 8080
