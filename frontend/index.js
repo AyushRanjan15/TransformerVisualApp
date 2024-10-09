@@ -60,19 +60,26 @@ uploadForm.addEventListener('submit', async event => {
         displayUploadedImage(imageUrl);
 
         // Step 4: Send a POST request to the backend server for further processing
-        console.log("Sending image URL to backend server for processing...");
+        console.log("Sending image URL to backend (172.31.43.78) server for processing...");
 
         // Create FormData and append the file
         const imgData = new FormData();
         imgData.append("file", file);  // Attach the file with the same 'file' field name
 
-        const backendResponse = await fetch("http://54.253.20.84:8080/upload-image", {
+        const backendResponse = await fetch("http://3.26.193.34:8080/upload-image", {
             method: "POST",
             body: imgData,    // Send the file directly
         });
         if (!backendResponse.ok) {
             throw new Error(`Backend error: ${backendResponse.status} ${backendResponse.statusText}`);
         }
+
+        // Get the image blob from the response
+        const imageBlob = await backendResponse.blob();
+
+        // Create a URL for the image
+        const processedImageURL = URL.createObjectURL(imageBlob);
+        displayProcessedImage(processedImageURL);
 
         const backendData = await backendResponse.json();
         console.log("Backend server response:", backendData);
@@ -107,4 +114,18 @@ function displayUploadedImage(imageUrl) {
 
     // Add the image to the container
     imagePreview.appendChild(img);
+}
+
+// Function to display the processed image
+function displayProcessedImage(imageUrl) {
+    // Clear any existing image
+    processedImageContainer.innerHTML = '';
+
+    // Create a new image element
+    const img = document.createElement('img');
+    img.src = imageUrl; // Use the processed image URL
+    img.alt = 'Processed Image';
+
+    // Add the image to the container
+    processedImageContainer.appendChild(img);
 }
