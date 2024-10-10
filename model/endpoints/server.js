@@ -36,7 +36,7 @@ app.post('/upload-image', upload.single('file'), async (req, res) => {
     const formData = new FormData();
     formData.append('file', req.file.buffer, req.file.originalname); // Send the file buffer
 
-    try {const flaskResponse = await axios.post('http://172.31.44.214:5000/process-image', formData, {
+    try {const flaskResponse = await axios.post('http://172.31.39.126:5000/process-image', formData, {
         headers: formData.getHeaders(),
         responseType: 'stream', // Expect a stream (image) in resonse
     });

@@ -44,7 +44,7 @@ def process_image():
         img_tensor = transform(img).unsqueeze(0)
 
         arch = 'vit_small'
-        pretrained_weights = '/home/ubuntu/.cache/torch/hub/checkpoints/dino_deitsmall8_300ep_pretrain.pth'
+        pretrained_weights = '/home/ubuntu/TransformerVisualApp/model/dino_small/dino_deitsmall8_300ep_pretrain.pth'
         checkpoint_key = "teacher"
         patch_size = 8
         image_size = (480, 480)
@@ -68,7 +68,8 @@ def process_image():
             print("Pretrained weights loaded successfully.")
         else:
             print("Pretrained weights not found, loading default DINO weights.")
-            url = "https://dl.fbaipublicfiles.com/dino/dino_deitsmall8_300ep_pretrain.pth"
+            # url = "https://dl.fbaipublicfiles.com/dino/dino_deitsmall8_300ep_pretrain.pth"
+            url = "https://dl.fbaipublicfiles.com/dino/dino_deitsmall8_300ep_pretrain/dino_deitsmall8_300ep_pretrain.pth"
             state_dict = torch.hub.load_state_dict_from_url(url, map_location="cpu")
             model.load_state_dict(state_dict, strict=False)
 
