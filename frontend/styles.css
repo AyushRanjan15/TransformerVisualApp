@@ -8,6 +8,7 @@
     align-items: center;
 } */
 
+/* Body and layout */
 body {
     font-family: 'Georgia', serif; /* Medium-like font */
     background-color: #f4f4f4; /* Light grey background */
@@ -15,6 +16,9 @@ body {
     line-height: 1.8;
     margin: 0;
     padding: 0;
+    max-width: 1200px; /* Restrict body content width */
+    margin: 0 auto; /* Center body content horizontally */
+    padding: 20px; /* Add padding for breathing room */
 }
 
 /* Header styling */
@@ -139,16 +143,29 @@ h1 {
     text-align: center;
 }
 
-.image-container {
-    text-align: center;
-    margin: 40px 0;
+/* Adjust the image preview section to display images side by side */
+.image-preview {
+    display: flex; /* Flexbox for horizontal layout */
+    flex-direction: row; /* Explicitly set direction to row */
+    justify-content: space-between; /* Space between images */
+    align-items: center; /* Center images vertically */
+    gap: 20px; /* Add spacing between the two images */
+    margin-top: 20px;
 }
 
-.image-container img {
-    max-width: 100%;
+/* Container for each image */
+.image-container {
+    width: 45%; /* Each image takes up 45% of the container width */
+    text-align: center;
+}
+
+/* Styling for images */
+.image-preview img {
+    max-width: 100%; /* Ensure image fits within its container */
     height: auto;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .image-container figcaption {

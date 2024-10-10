@@ -6,7 +6,8 @@
 const fileInput = document.getElementById('file-input');
 const fileNameDisplay = document.getElementById('file-name');
 const uploadForm = document.getElementById('upload-form');
-const imagePreview = document.getElementById('image-preview'); // Get the image preview container
+const uploadedImageContainer = document.getElementById('uploaded-image-container');
+const processedImageContainer = document.getElementById('processed-image-container');
 
 // Display selected file name
 fileInput.addEventListener('change', () => {
@@ -66,7 +67,7 @@ uploadForm.addEventListener('submit', async event => {
         const imgData = new FormData();
         imgData.append("file", file);  // Attach the file with the same 'file' field name
 
-        const backendResponse = await fetch("http://3.26.193.34:8080/upload-image", {
+        const backendResponse = await fetch("http://3.25.124.79:8080/upload-image", {
             method: "POST",
             body: imgData,    // Send the file directly
         });
@@ -76,19 +77,12 @@ uploadForm.addEventListener('submit', async event => {
 
         // Get the image blob from the response
         const imageBlob = await backendResponse.blob();
+        console.log("Image Blob:", imageBlob);
 
         // Create a URL for the image
         const processedImageURL = URL.createObjectURL(imageBlob);
+        console.log("Displaying processed image from URL:", processedImageURL);
         displayProcessedImage(processedImageURL);
-
-        const backendData = await backendResponse.json();
-        console.log("Backend server response:", backendData);
-        alert(`Image uploaded successfully: ${backendData.fileName}`);
-
-        if (backendData.processed_images) {
-            alert('Image processed successfully on the backend.');
-            // You can update the frontend to show the processed images if needed
-        }
 
     } catch (error) {
         console.error("Error uploading file or sending it to the backend:", error);
@@ -102,18 +96,18 @@ uploadForm.addEventListener('submit', async event => {
 
 // Function to display the uploaded image
 function displayUploadedImage(imageUrl) {
-    // Remove any existing image
-    imagePreview.innerHTML = '';
+    // Clear the uploaded image container only
+    uploadedImageContainer.innerHTML = '';
 
     // Create a new image element
     const img = document.createElement('img');
-    img.src = imageUrl; // Use the image URL to display
+    img.src = imageUrl; // Use the uploaded image URL to display
     img.alt = 'Uploaded Image';
     img.style.maxWidth = '500px';
     img.style.maxHeight = '400px';
 
     // Add the image to the container
-    imagePreview.appendChild(img);
+    uploadedImageContainer.appendChild(img);
 }
 
 // Function to display the processed image
@@ -125,7 +119,10 @@ function displayProcessedImage(imageUrl) {
     const img = document.createElement('img');
     img.src = imageUrl; // Use the processed image URL
     img.alt = 'Processed Image';
+    img.style.maxWidth = '500px'; // Ensure correct sizing
+    img.style.maxHeight = '400px'; // Ensure correct sizing
 
     // Add the image to the container
     processedImageContainer.appendChild(img);
+    console.log("Processed image displayed successfully.");
 }
