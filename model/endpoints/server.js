@@ -10,7 +10,9 @@ const FormData = require('form-data'); // To send multipart data
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
+// app.use(cors());
+// Enable CORS for all routes
+app.use(cors({ origin: '*' })); // Enable CORS for any origin (Allow requests from any domain)
 
 // Set up storage and file handling with multer
 const storage = multer.memoryStorage(); // Store the file in memory
@@ -34,7 +36,7 @@ app.post('/upload-image', upload.single('file'), async (req, res) => {
     const formData = new FormData();
     formData.append('file', req.file.buffer, req.file.originalname); // Send the file buffer
 
-    try {const flaskResponse = await axios.post('http://172.31.43.78:5000/process-image', formData, {
+    try {const flaskResponse = await axios.post('http://172.31.39.126:5000/process-image', formData, {
         headers: formData.getHeaders(),
         responseType: 'stream', // Expect a stream (image) in resonse
     });
@@ -42,6 +44,7 @@ app.post('/upload-image', upload.single('file'), async (req, res) => {
     // Forwardthe Flask image back to the client
     res.setHeader('Content-Type', 'image/png');
     flaskResponse.data.pipe(res); //Pipe the image back to the client
+    console.log('Flask response headers:', flaskResponse.headers);
     } catch (error) {
         console.log('Error processing image: ', error);
         res.status(500).send({ error: 'Failed to process image' });
