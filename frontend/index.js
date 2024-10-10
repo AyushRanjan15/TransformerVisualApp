@@ -67,7 +67,7 @@ uploadForm.addEventListener('submit', async event => {
         const imgData = new FormData();
         imgData.append("file", file);  // Attach the file with the same 'file' field name
 
-        const backendResponse = await fetch("http://3.25.124.79:8080/upload-image", {
+        const backendResponse = await fetch("http://3.106.245.88:8080/upload-image", {
             method: "POST",
             body: imgData,    // Send the file directly
         });
