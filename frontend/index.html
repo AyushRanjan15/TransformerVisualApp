@@ -32,18 +32,18 @@
             <div class="file-name" id="file-name">No file selected</div>
         </form>
     </div>
-    <!-- Add two containers for uploaded and processed images -->
+    <!-- Grid layout for uploaded, processed, and sample images -->
     <div class="image-preview" id="image-preview">
         <div class="image-container">
             <h3>Uploaded Image</h3>
-            <div id="uploaded-image-container">
-                <!-- Uploaded image will appear here -->
+            <div id="uploaded-image-container" class="placeholder">
+                <span class="placeholder-text">Uploaded image will appear here</span>
             </div>
         </div>
         <div class="image-container">
             <h3>Processed Image</h3>
-            <div id="processed-image-container">
-                <!-- Processed image will appear here -->
+            <div id="processed-image-container" class="placeholder">
+                <span class="placeholder-text">Processed image will appear here</span>
             </div>
         </div>
     </div>
@@ -51,24 +51,55 @@
     <!-- Add additional text content -->
     <div class="article-container">
         <div class="text-content">
-            <p>Transformers were originally introduced to take on challenges faced in tasks like language modelling and machine translation. 
-                Before the introduction of Transformers the then SOTA methods, such as long short-term memory (LSTM), recurrent neural network (RNN) were ignorantly sequential in nature which posed challenges in handling long sequences due to memory constrains of hardware. 
-                The Transformers were introduced as an approach that only uses self-attention, the absence of recurrence allowed for significant improvements in parallelisation. 
-                For example, in natural language processing tasks, architectures like GPT-4 can handle entire paragraphs or documents with thousands of tokens, maintaining context and coherence across long sequences, which was previously a significant limitation in earlier models like RNNs or LSTMs.</p>
+            <p>
+                Transformers were originally introduced to take on challenges faced in tasks like language modelling and machine translation. 
+                Before the introduction of Transformers the then SOTA methods, such as long short-term memory (LSTM), and recurrent neural network 
+                (RNN) were sequential in nature which posed challenges in handling long sequences due to memory constraints of the hardware. 
+                The Transformers were introduced as an approach that only uses self-attention, the absence of recurrence allowed for significant 
+                improvements in parallelisation. For example trained on massive datasets of text, allowing it to maintain context across very long sequences. 
+                For instance, when training GPT models, sequence lengths can span thousands of tokens. Due to the architecture’s self-attention mechanism, 
+                the model can efficiently analyse relationships between words at the start and the end of long paragraphs or even entire documents, without 
+                losing context or accuracy in predictions.
+            </p>
         </div>
 
         <!-- Add an image (centered and styled like Medium) -->
         <div class="image-container">
-            <img src="images/transformer_architecture.png" alt="Transformers illustration">
-            <figcaption>A diagram of Transformer architecture (taken from 'Attention Is All You Need').</figcaption>
+            <img src="images/vit.png" alt="Transformers illustration">
+            <figcaption>A diagram of vanilla ViT (taken from 'An Image Is Worth 16X16 Words').</figcaption>
+        </div>
+
+        <div>
+            <h2>Transformers in computer vision tasks</h2>
         </div>
 
         <div class="text-content">
-            <p>The success of transformers in natural language tasks inspired researchers at Google Brain research team to apply them to computer vision tasks, such as image classification. 
-                At that time, convolutional neural networks (CNN) was the dominant approach to tackle computer vision tasks. 
-                Vision transformers see very differently from CNNs. CNN stats with very low-level local information and gradually build up more global structures in deeper layers, ViT already have global information at the earliest layer because of global self-attention. 
-                As pithily summarized in a Quanta article, “If a CNN’s approach is like starting at a single pixel and zooming out, a transformer slowly brings the whole fuzzy image into focus.”. 
-                </p>
+            <p>
+                The success of transformers in natural language tasks inspired researchers at Google Brain research team to explore their potential in image classification tasks. 
+                At that time, convolutional neural networks (CNN) were the dominant architecture for tackling computer vision tasks. However, it was getting increasingly difficult 
+                to scale CNNs to train on larger datasets with high-resolution images. The training parallelisation offered by transformers offered a solution to all the impending problems,
+                allowing to train on over 100B parameters. Since transformers were designed for natural language tasks some innovation was required to prepare images such that they could be 
+                ingested during the training phase. The solution was to split an image into patches and provide the sequence of linear embeddings of these patches as an input to a Transformer. 
+                Image patches are treated the same way as tokens (words) in an NLP application. Then the model was trained on image classification in a supervised fashion.
+            </p>
+        </div>
+
+        <div>
+            <h2>How good are ViTs as compared to CNN</h2>
+        </div>
+
+        <div class="text-content">
+            <p>
+                If transformers are so good at NLP tasks are CNN obsolete? The answer depends on the context, in many cases, ViTs have competitive performance to CNN but require more training 
+                data and compute. The vanilla ViT does not offset the cost of added hardware & data requirements with their performance. In the paper “Emerging Properties in Self-Supervised Vision 
+                Transformers” the authors argue that because of supervision during the training process, ViT is often forced to map the rich visual information contained in the image to a single 
+                concept i.e. label. 
+            </p>
+
+            <p>
+                However, the adoption of self-supervised learning showed the extraordinary potential of ViTs to extract rich visual features from images that can be then used for downstream tasks 
+                such as classification and segmentation.
+            </p>
         </div>
     </div>
 
