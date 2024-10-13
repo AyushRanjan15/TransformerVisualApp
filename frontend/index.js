@@ -3,6 +3,7 @@ const fileNameDisplay = document.getElementById('file-name');
 const uploadForm = document.getElementById('upload-form');
 const uploadedImageContainer = document.getElementById('uploaded-image-container');
 const processedImageContainer = document.getElementById('processed-image-container');
+const loadingSpinner = document.getElementById('loading-spinner'); // Get the spinner element
 
 // Display selected file name
 fileInput.addEventListener('change', () => {
@@ -23,6 +24,9 @@ uploadForm.addEventListener('submit', async event => {
     }
 
     try {
+        // Show the loading spinner
+        loadingSpinner.style.display = 'block';
+
         // Step 1: Get a secure URL from your server to upload the file to S3
         console.log("Fetching secure URL from server...");
         const response = await fetch("http://localhost:8080/s3Url"); 
@@ -62,7 +66,7 @@ uploadForm.addEventListener('submit', async event => {
         const imgData = new FormData();
         imgData.append("file", file);  // Attach the file with the same 'file' field name
 
-        const backendResponse = await fetch("http://3.106.245.88:8080/upload-image", {
+        const backendResponse = await fetch("http://3.106.197.63:8080/upload-image", {
             method: "POST",
             body: imgData,    // Send the file directly
         });
@@ -82,6 +86,9 @@ uploadForm.addEventListener('submit', async event => {
     } catch (error) {
         console.error("Error uploading file or sending it to the backend:", error);
         // alert('Error during file processing. Please try again.');
+    } finally{
+        // Hide the spinner when processing is done
+        loadingSpinner.style.display = 'none';
     }
 
     // Reset the form
