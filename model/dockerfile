@@ -1,0 +1,36 @@
+# Official Python image
+FROM python:3.10-slim
+
+# Set working directory in the container
+WORKDIR /app
+
+# Install miniconda to manage environment
+# Install Miniconda to manage environment
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
+    rm Miniconda3-latest-Linux-x86_64.sh && \
+    /opt/conda/bin/conda init bash
+
+# Add conda to PATH and create environment from YAML file
+ENV PATH /opt/conda/bin:$PATH
+
+# Copy environment file first to ensure it's available for the next step
+COPY environment_cpu.yml /app/environment_cpu.yml
+# Copy the Flask app files to the container
+COPY . /app
+
+# List the contents of /app to verify the copy
+RUN ls -al /app
+
+
+RUN conda env create -f /app/environment_cpu.yml
+# Activate the environment
+SHELL ["conda", "run", "-n", "ml_pytorch", "/bin/bash", "-c"]
+
+# Expose the port Flask will run on
+EXPOSE 5000
+
+# Command to run the Flask app (using conda environment)
+CMD ["conda", "run", "-n", "ml_pytorch", "python", "/app/inference.py"]

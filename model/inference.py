@@ -44,7 +44,7 @@ def process_image():
         img_tensor = transform(img).unsqueeze(0)
 
         arch = 'vit_small'
-        pretrained_weights = '/home/ubuntu/TransformerVisualApp/model/dino_small/dino_deitsmall8_300ep_pretrain.pth'
+        pretrained_weights = '/dino_small/dino_deitsmall8_300ep_pretrain.pth'
         checkpoint_key = "teacher"
         patch_size = 8
         image_size = (480, 480)
@@ -94,8 +94,20 @@ def process_image():
         print(f"Processed attention head shape: {processed_attention[0].shape}")
 
         # Convert processed_attention to image using plt and save it in memory
+        # fig, ax = plt.subplots()
+        # ax.imshow(processed_attention[0], cmap='viridis')  # Display the heatmap
+        # plt.axis('off')
+
+        # Superimpose all 6 attention heads
+        combined_attention = np.mean(processed_attention, axis=0)  # Averaging all 6 heads
+
+        # Normalize the combined attention map to [0, 1]
+        combined_attention -= combined_attention.min()
+        combined_attention /= combined_attention.max()
+
+        # Convert combined_attention to image using plt and save it in memory
         fig, ax = plt.subplots()
-        ax.imshow(processed_attention[0], cmap='viridis')  # Display the heatmap
+        ax.imshow(combined_attention, cmap='viridis')  # Display the combined heatmap
         plt.axis('off')
 
         img_io = BytesIO()
