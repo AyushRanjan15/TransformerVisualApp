@@ -1,0 +1,17 @@
+# Use official Node.js image for the base
+FROM node:16
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Node.js app files to the container
+COPY ./endpoints /app
+
+# Install the app dependencies
+RUN npm install
+
+# Expose the port the Node.js app runs on
+EXPOSE 8080
+
+# Command to start the Node.js server
+CMD ["node", "server.js"]
