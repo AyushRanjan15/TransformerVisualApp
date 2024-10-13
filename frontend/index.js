@@ -1,8 +1,3 @@
-// lsof -i :8000  
-//kill using /; kill -9 <pid>
-// start server using: python3 -m http.server 800
-
-
 const fileInput = document.getElementById('file-input');
 const fileNameDisplay = document.getElementById('file-name');
 const uploadForm = document.getElementById('upload-form');
@@ -96,33 +91,25 @@ uploadForm.addEventListener('submit', async event => {
 
 // Function to display the uploaded image
 function displayUploadedImage(imageUrl) {
-    // Clear the uploaded image container only
     uploadedImageContainer.innerHTML = '';
 
-    // Create a new image element
     const img = document.createElement('img');
-    img.src = imageUrl; // Use the uploaded image URL to display
+    img.src = imageUrl;
     img.alt = 'Uploaded Image';
     img.style.maxWidth = '500px';
     img.style.maxHeight = '400px';
 
-    // Add the image to the container
     uploadedImageContainer.appendChild(img);
 }
 
-// Function to display the processed image
 function displayProcessedImage(imageUrl) {
-    // Clear any existing image
     processedImageContainer.innerHTML = '';
 
-    // Create a new image element
     const img = document.createElement('img');
-    img.src = imageUrl; // Use the processed image URL
+    img.src = imageUrl;
     img.alt = 'Processed Image';
-    img.style.maxWidth = '500px'; // Ensure correct sizing
-    img.style.maxHeight = '400px'; // Ensure correct sizing
+    img.style.maxWidth = '500px';
+    img.style.maxHeight = '400px';
 
-    // Add the image to the container
     processedImageContainer.appendChild(img);
-    console.log("Processed image displayed successfully.");
 }
