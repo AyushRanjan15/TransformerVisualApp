@@ -15,7 +15,7 @@ services:
       context: ./frontend
     ports:
       - "8000:80"
-      - "8443:443"
+      # - "8443:443"
     networks:
       - app-network
 
