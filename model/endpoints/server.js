@@ -36,10 +36,15 @@ app.post('/upload-image', upload.single('file'), async (req, res) => {
     const formData = new FormData();
     formData.append('file', req.file.buffer, req.file.originalname); // Send the file buffer
 
-    try {const flaskResponse = await axios.post('http://172.31.39.126:5000/process-image', formData, {
+    try {const flaskResponse = await axios.post('http://172.31.42.3:5000/process-image', formData, {
         headers: formData.getHeaders(),
         responseType: 'stream', // Expect a stream (image) in resonse
     });
+
+    // const flaskResponse = await axios.post('http://flask-app:5000/process-image', formData, {
+    //     headers: formData.getHeaders(),
+    //     responseType: 'stream',
+    // });
 
     // Forwardthe Flask image back to the client
     res.setHeader('Content-Type', 'image/png');
@@ -55,3 +60,6 @@ app.post('/upload-image', upload.single('file'), async (req, res) => {
 app.listen(8080, () => {
     console.log("Server is listening on port 8080");
 });
+// app.listen(8080, '0.0.0.0', () => {
+//     console.log("Server is listening on port 8080");
+// });
